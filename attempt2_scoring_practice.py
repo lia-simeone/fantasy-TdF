@@ -1,4 +1,5 @@
 # import packages
+from __future__ import division, print_function
 import sys
 import pandas as pd
 
@@ -48,6 +49,6 @@ for stage in range(1,int(sys.argv[1])+1):
         fantasy_standings[player] += stage_standings[player]
 
     # print the results after each stage
-    print ""
-    print "Stage",stage,"results:",stage_standings
-    print "Overall results after stage",stage,":",fantasy_standings
+    print("")
+    print("Stage",stage,"results:",stage_standings)
+    print("Overall results after stage",stage,":",fantasy_standings)
