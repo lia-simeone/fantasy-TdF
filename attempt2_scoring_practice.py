@@ -51,8 +51,8 @@ def main():
 
         # print the results after each stage
         print("")
-        print("Stage",stage,"results:",stage_standings)
-        print("Overall results after stage",stage,":",fantasy_standings)
+        print("Stage {0} results: {1}".format(stage, stage_standings))
+        print("Overall results after stage {0}: ".format(stage, fantasy_standings))
 
 if __name__ == "__main__":
     main()
