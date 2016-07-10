@@ -25,18 +25,6 @@ def main():
     stage_df = pd.read_csv('stage_standings.csv', index_col = 'rank')
     daily_gc_df = pd.read_csv('daily_gc_standings.csv', index_col = 'rank')
 
-    # figure out which of the top ranked riders are actually on our fantasy teams
-    def get_relevant_riders(standings_series):
-        # turn each stage result into a dictionary
-        stage_results = standings_series.to_dict()
-        # swap the dictionary so the rider is the key and his rank the value
-        stage_results_transposed = {val: key for (key, val) in stage_results.items()}
-
-        # grab only the riders that are on our teams
-        relevant_riders = {rider: rank for (rider, rank) in stage_results_transposed.items() if rider in rider_picks.keys()}
-        return relevant_riders
-
-
     # run the scoring up to the stage specified in the command line
     for stage in range(1, int(sys.argv[1]) + 1):
 
@@ -60,5 +48,17 @@ def main():
         print("Stage {0} results: {1}".format(stage, stage_standings))
         print("Overall results after stage {0}: ".format(stage, fantasy_standings))
 
+
+def get_relevant_riders(standings_series):
+    """figure out which of the top ranked riders are actually on our fantasy teams"""
+    # turn each stage result into a dictionary
+    stage_results = standings_series.to_dict()
+    # swap the dictionary so the rider is the key and his rank the value
+    stage_results_transposed = {val: key for (key, val) in stage_results.items()}
+
+    # grab only the riders that are on our teams
+    relevant_riders = {rider: rank for (rider, rank) in stage_results_transposed.items() if rider in rider_picks.keys()}
+    return relevant_riders
+        
 if __name__ == "__main__":
     main()
